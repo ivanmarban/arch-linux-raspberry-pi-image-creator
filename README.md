@@ -1,5 +1,6 @@
 # Arch Linux ARM image creator for Raspberry Pi
 Shell script that creates an Arch Linux image for the Raspberry Pi 1 or 2
+
 Tested on CentOS Linux release 7.2.1511 x86_64
 
 ## Prerequisites
