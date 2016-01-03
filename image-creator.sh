@@ -3,15 +3,15 @@
 BASEURL=http://os.archlinuxarm.org/os/
 RPI=ArchLinuxARM-rpi-latest.tar.gz
 RPI2=ArchLinuxARM-rpi-2-latest.tar.gz
-ARMV6IMG=arch-linux-armv6l-$(date +%Y%m%d).img
-ARMV7IMG=arch-linux-armv7l-$(date +%Y%m%d).img
+ARMV6IMG=arch-linux-armv6-$(date +%Y%m%d).img
+ARMV7IMG=arch-linux-armv7-$(date +%Y%m%d).img
 
 echo -e "\n==============================================="
 echo -e " Arch Linux ARM image creator for Raspberry Pi "
 echo -e "==============================================="
 echo -e "\nEnter your choice:\n"
 
-options=("Raspberry Pi   (ARMv6l)" "Raspberry Pi 2 (ARMv7l)" "Quit")
+options=("Raspberry Pi   (ARMv6)" "Raspberry Pi 2 (ARMv7)" "Quit")
 
 create_image(){
 	losetup /dev/loop0 && exit 1 || true
