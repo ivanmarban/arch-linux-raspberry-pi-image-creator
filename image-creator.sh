@@ -3,15 +3,17 @@
 BASEURL=http://os.archlinuxarm.org/os/
 RPI=ArchLinuxARM-rpi-latest.tar.gz
 RPI2=ArchLinuxARM-rpi-2-latest.tar.gz
+RPI3=ArchLinuxARM-rpi-3-latest.tar.gz
 ARMV6IMG=arch-linux-armv6-$(date +%Y%m%d).img
 ARMV7IMG=arch-linux-armv7-$(date +%Y%m%d).img
+ARMV8IMG=arch-linux-armv8-$(date +%Y%m%d).img
 
 echo -e "\n==============================================="
 echo -e " Arch Linux ARM image creator for Raspberry Pi "
 echo -e "==============================================="
 echo -e "\nEnter your choice:\n"
 
-options=("Raspberry Pi   (ARMv6)" "Raspberry Pi 2 (ARMv7)" "Quit")
+options=("Raspberry Pi   (ARMv6)" "Raspberry Pi 2 (ARMv7)" "Raspberry Pi 3 (ARMv7)" "Raspberry Pi 3 (ARMv8)" "Quit")
 
 create_image(){
 	losetup /dev/loop0 && exit 1 || true
@@ -19,9 +21,9 @@ create_image(){
 	truncate -s 1G $2
 	losetup /dev/loop0 $2
 	parted -s /dev/loop0 mklabel msdos
-	parted -s /dev/loop0 unit MiB mkpart primary fat32 -- 1 32
+	parted -s /dev/loop0 unit MiB mkpart primary fat32 -- 1 64
 	parted -s /dev/loop0 set 1 boot on
-	parted -s /dev/loop0 unit MiB mkpart primary ext2 -- 32 -1
+	parted -s /dev/loop0 unit MiB mkpart primary ext2 -- 64 -1
 	parted -s /dev/loop0 print
 	mkfs.vfat -n SYSTEM /dev/loop0p1
 	mkfs.ext4 -L root -b 4096 -E stride=4,stripe_width=1024 /dev/loop0p2
@@ -47,6 +49,16 @@ select option in "${options[@]}"; do
 			IMG=$ARMV7IMG
 			URL=$BASEURL$RPI2
 			create_image $URL $IMG $RPI2
+			break ;;
+		3)
+			IMG=$ARMV7IMG
+			URL=$BASEURL$RPI2
+			create_image $URL $IMG $RPI2
+			break ;;
+		4)
+			IMG=$ARMV8IMG
+			URL=$BASEURL$RPI3
+			create_image $URL $IMG $RPI3
 			break ;;
 		3)
 			break ;;
