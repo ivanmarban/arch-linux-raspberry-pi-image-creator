@@ -9,7 +9,7 @@ Tested on CentOS Linux release 7.2.1511 x86_64
 - parted
 - wget
 
-#Installation
+## Installation
 Download the script and make it executable:
 ```sh
 $ wget https://raw.githubusercontent.com/ivanmarban/arch-linux-raspberry-pi-image-creator/master/image-creator.sh
