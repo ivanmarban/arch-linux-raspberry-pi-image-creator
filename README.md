@@ -19,3 +19,18 @@ Flash the created image to your SD Card
 ```sh
 $ dd bs=4M if=arch-linux-X-XXXXXXXX.img of=/dev/sdX
 ```
+
+## Troubleshooting
+If you are getting messages like:
+```sh
+bsdtar: Ignoring malformed pax extended attribute
+```
+Try bsdtar 3.3.2:
+```sh
+wget https://www.libarchive.org/downloads/libarchive-3.3.2.tar.gz
+tar xzf libarchive-3.3.2.tar.gz
+cd libarchive-3.3.2
+./configure
+make
+sudo make install
+```
