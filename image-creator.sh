@@ -18,7 +18,7 @@ options=("Raspberry Pi   (ARMv6)" "Raspberry Pi 2 (ARMv7)" "Raspberry Pi 3 (ARMv
 create_image(){
 	losetup /dev/loop0 && exit 1 || true
 	wget -N $1
-	truncate -s 1G $2
+	truncate -s 2G $2
 	losetup /dev/loop0 $2
 	parted -s /dev/loop0 mklabel msdos
 	parted -s /dev/loop0 unit MiB mkpart primary fat32 -- 1 64
